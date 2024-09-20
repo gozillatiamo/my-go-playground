@@ -1,0 +1,25 @@
+{
+    "reference_id": "ed432fa7-4f36-4db0-b5eb-4baf4a1ab50a",
+    "ndid_request_id": "e91ed91bd526ef69510065ef6faae1111b747029b1f9d6b0e34e795e676d0057",
+    "status": "ACCEPTED",
+    "response_list": [
+        {
+            "aal": 2.3,
+            "ial": 2.2,
+            "idp_id": "0DEC58C5-EE44-48CD-BD0A-B4C513C28E6D",
+            "status": "accept"
+        }
+    ],
+    "data_request_list": [
+        {
+            "service_id": "001.cust_info_001",
+            "response_list": [
+                {
+                    "as_id": "A18AC373-9CCB-47B3-A285-9ADBA29AFEFC",
+                    "received_data": true,
+                    "signed": true
+                }
+            ]
+        }
+    ]
+}

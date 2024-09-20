@@ -1,0 +1,56 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"golang.org/x/net/html"
+)
+
+func A(a1 string, a2 string) (r1 string, r2 string) {
+	return
+}
+func B(a1, a2, a3 string) (r1, r2 string) { return }
+func squares(side1, side int) (area int)  { return }
+
+func main() {
+	doc, _ := fetchHtml(os.Args[1])
+	outline(nil, doc)
+}
+
+var limit int = 3
+var i *int
+
+func fetchHtml(url string) (node *html.Node, err error) {
+	for i := 0; i < limit; i++ {
+
+		resp, _ := http.Get(url)
+		if err != nil {
+			resp.Body.Close()
+			log.Fatalf("error: %v", err)
+		}
+
+		if resp.StatusCode != http.StatusOK {
+			resp.Body.Close()
+			return nil, fmt.Errorf("url: %s has is not OK", url)
+		}
+		node, err = html.Parse(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			return nil, fmt.Errorf("url: %s can't parse html %v", url, err)
+		}
+	}
+	return node, nil
+}
+
+func outline(stack []string, n *html.Node) {
+	if n.Type == html.ElementNode {
+		stack = append(stack, n.Data)
+		fmt.Println(stack)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		outline(stack, c)
+	}
+}
